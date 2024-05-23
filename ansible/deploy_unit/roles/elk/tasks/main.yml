@@ -1,0 +1,46 @@
+- name: Setup deployment of elasticsearch status script in remote server
+  tags:
+    - setup_elk_monitoring
+ 
+
+  block:
+    - name: Create parent directories
+      ansible.builtin.file:
+        path: /ipsec/elk_check/
+        state: directory
+        mode: '0755'
+        owner: odennav
+        group: odennav
+      tags:
+        - create_elk_check_dir
+
+    - name: Copy monitoring script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/elk_health_check.sh
+        dest: /ipsec/elk_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+      tags:
+        - copy_elk_script
+
+    - name: Cronjob for elk status check
+      ansible.builtin.cron:
+        name: "elasticsearch status monitoring"
+        minute: "1"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        job: "/bin/bash /ipsec/elk_check/elk_health_check.sh > /dev/null 2>&1"
+      tags:
+        - setup_cron_elk_check
+
+    - name: Restart service cron on centos, daemon-reload to pick up config changes
+      ansible.builtin.systemd_service:
+        state: restarted
+        daemon_reload: true
+        name: crond
+
+
+

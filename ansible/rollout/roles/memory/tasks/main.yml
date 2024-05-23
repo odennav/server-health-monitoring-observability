@@ -1,0 +1,18 @@
+- name: Rollout deployment of memory usage and swap check script in remote servers
+  tags:
+    - rollout_memory_monitoring
+ 
+
+  block:
+    - name: Copy monitoring script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/memory_check.sh
+        dest: /ipsec/memory_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+        force: true
+      tags:
+        - copy_memory_script
+
+

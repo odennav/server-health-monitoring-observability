@@ -1,0 +1,21 @@
+---
+
+- hosts: cs_unit
+  become: true
+  roles:
+    - cpu
+    - disk
+    - elk
+    - memory
+    - ntp
+    - power
+
+- hosts: mp_unit
+  become: true
+  roles:
+    - cpu
+    - disk
+    - memory
+    - ntp
+    - power
+

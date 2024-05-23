@@ -1,0 +1,29 @@
+- name: Rollout deployment of disk monitoring script in remote servers
+  tags:
+    - rollout_disk_monitoring
+ 
+
+  block:
+    - name: Copy disk usage script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/disk_check.sh
+        dest: /ipsec/disk_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+        force: true
+      tags:
+        - copy_disk_check_script
+
+    - name: Copy old files script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/old_files_check.sh
+        dest: /ipsec/disk_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+        force: true
+      tags:
+        - copy_old_files_script
+
+

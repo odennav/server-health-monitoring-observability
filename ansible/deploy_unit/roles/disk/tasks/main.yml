@@ -1,0 +1,67 @@
+- name: Setup deployment of disk monitoring script in remote server
+  tags:
+    - setup_disk_monitoring
+ 
+
+  block:
+    - name: Create parent directories
+      ansible.builtin.file:
+        path: /ipsec/disk_check/
+        state: directory
+        mode: '0755'
+        owner: odennav
+        group: odennav
+      tags:
+        - create_disk_check_dir
+
+    - name: Copy disk usage script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/disk_check.sh
+        dest: /ipsec/disk_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+      tags:
+        - copy_disk_check_script
+
+    - name: Copy old files script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/old_files_check.sh
+        dest: /ipsec/disk_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+      tags:
+        - copy_old_files_script
+
+    - name: Cronjob for disk usage
+      ansible.builtin.cron:
+        name: "disk usage monitoring"
+        minute: "1"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        job: "/bin/bash /ipsec/disk_check/disk_check.sh > /dev/null 2>&1"
+      tags:
+        - setup_cron_disk_check
+
+    - name: Cronjob for checking old files
+      ansible.builtin.cron:
+        name: "old files monitoring"
+        minute: "1"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        job: "/bin/bash /ipsec/disk_check/old_files_check.sh > /dev/null 2>&1"
+      tags:
+        - setup_cron_old_files_check
+
+    - name: Restart service cron on centos, daemon-reload to pick up config changes
+      ansible.builtin.systemd_service:
+        state: restarted
+        daemon_reload: true
+        name: crond
+
+

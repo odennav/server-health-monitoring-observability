@@ -1,0 +1,14 @@
+---
+
+- hosts: central_servers
+  become: true
+  roles:
+    - cs_group
+    
+
+- hosts: message_processors
+  become: true
+  roles:
+    - mp_group
+
+

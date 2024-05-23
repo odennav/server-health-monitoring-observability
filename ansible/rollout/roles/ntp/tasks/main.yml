@@ -1,0 +1,18 @@
+- name: Rollout deployment of ntp monitoring script in remote servers
+  tags:
+    - rollout_ntp_monitoring
+ 
+
+  block:
+    - name: Copy monitoring script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/ntp_check.sh
+        dest: /ipsec/ntp_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+        force: true
+      tags:
+        - copy_ntp_script
+
+

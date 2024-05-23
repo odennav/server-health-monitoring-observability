@@ -1,0 +1,45 @@
+- name: Setup deployment of cpu monitoring script in remote server
+  tags:
+    - setup_cpu_monitoring
+    
+
+  block:
+    - name: Create parent directories
+      ansible.builtin.file:
+        path: /ipsec/cpu_check/
+        state: directory
+        mode: '0755'
+        owner: odennav
+        group: odennav
+      tags:
+        - create_cpu_check_dir
+
+    - name: Copy monitoring script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/cpu_load_avg_check.sh
+        dest: /ipsec/cpu_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+      tags:
+        - copy_cpu_script
+
+    - name: Cronjob for cpu and load average 
+      ansible.builtin.cron:
+        name: "cpu and load average monitoring"
+        minute: "1"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        job: "/bin/bash /ipsec/cpu_check/cpu_load_avg_check.sh > /dev/null 2>&1"
+      tags:
+        - setup_cron_cpu_check
+
+    - name: Restart service cron on centos, daemon-reload to pick up config changes
+      ansible.builtin.systemd_service:
+        state: restarted
+        daemon_reload: true
+        name: crond
+
+

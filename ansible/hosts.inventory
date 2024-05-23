@@ -1,0 +1,20 @@
+[central_servers]
+192.168.10.1  ansible_user={{ user }} ansible_password={{ password }}
+192.168.10.2  ansible_user={{ user }} ansible_password={{ password }}
+
+
+[message_processors]
+192.168.10.3  ansible_user={{ user }} ansible_password={{ password }} 
+192.168.10.4  ansible_user={{ user }} ansible_password={{ password }}
+192.168.10.5  ansible_user={{ user }} ansible_password={{ password }}
+192.168.10.6  ansible_user={{ user }} ansible_password={{ password }}
+
+
+
+[cs_unit]
+192.168.10.7  ansible_user={{ user }} ansible_password={{ password }}
+
+[mp_unit]
+192.168.10.8  ansible_user={{ user }} ansible_password={{ password }}
+
+

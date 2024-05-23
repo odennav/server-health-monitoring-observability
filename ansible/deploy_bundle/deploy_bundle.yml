@@ -1,0 +1,21 @@
+---
+
+- hosts: central_servers
+  become: true
+  roles:
+    - cpu
+    - disk
+    - elk
+    - memory
+    - ntp
+    - power
+
+- hosts: message_processors
+  become: true
+  roles:
+    - cpu
+    - disk
+    - memory
+    - ntp
+    - power
+

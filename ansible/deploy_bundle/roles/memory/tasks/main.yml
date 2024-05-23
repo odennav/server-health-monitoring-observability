@@ -1,0 +1,46 @@
+- name: Setup deployment of memory usage and swap check script in remote servers
+  tags:
+    - setup_memory_monitoring
+ 
+
+  block:
+    - name: Create parent directories
+      ansible.builtin.file:
+        path: /ipsec/memory_check/
+        state: directory
+        mode: '0755'
+        owner: odennav
+        group: odennav
+      tags:
+        - create_memory_check_dir
+
+    - name: Copy monitoring script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/memory_check.sh
+        dest: /ipsec/memory_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+      tags:
+        - copy_memory_script
+
+    - name: Cronjob for memory usage and swap check
+      ansible.builtin.cron:
+        name: "memory usage monitoring"
+        minute: "1"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        job: "/bin/bash /ipsec/memory_check/memory_check.sh > /dev/null 2>&1"
+      tags:
+        - setup_cron_memory_check
+
+
+    - name: Restart service cron on centos, daemon-reload to pick up config changes
+      ansible.builtin.systemd_service:
+        state: restarted
+        daemon_reload: true
+        name: crond
+
+

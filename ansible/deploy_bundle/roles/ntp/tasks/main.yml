@@ -1,0 +1,44 @@
+- name: Setup deployment of ntp monitoring script in remote servers
+  tags:
+    - setup_ntp_monitoring
+ 
+
+  block:
+    - name: Create parent directories
+      ansible.builtin.file:
+        path: /ipsec/ntp_check/
+        state: directory
+        mode: '0755'
+        owner: odennav
+        group: odennav
+      tags:
+        - create_ntp_check_dir
+
+    - name: Copy monitoring script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/ntp_check.sh
+        dest: /ipsec/ntp_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+      tags:
+        - copy_ntp_script
+
+    - name: Cronjob for ntp status check
+      ansible.builtin.cron:
+        name: "ntp status monitoring"
+        minute: "1"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        job: "/bin/bash /ipsec/ntp_check/ntp_check.sh > /dev/null 2>&1"
+      tags:
+        - setup_cron_ntp_check
+
+    - name: Restart service cron on centos, daemon-reload to pick up config changes
+      ansible.builtin.systemd_service:
+        state: restarted
+        daemon_reload: true
+        name: crond
+

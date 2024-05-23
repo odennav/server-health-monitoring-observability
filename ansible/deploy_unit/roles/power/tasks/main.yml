@@ -1,0 +1,46 @@
+- name: Setup deployment of power monitoring script in remote server
+  tags:
+    - setup_power_monitoring
+ 
+
+  block:
+    - name: Create parent directories
+      ansible.builtin.file:
+        path: /ipsec/power_check/
+        state: directory
+        mode: '0755'
+        owner: odennav
+        group: odennav
+      tags:
+        - create_power_check_dir
+
+    - name: Copy monitoring script to remote server
+      ansible.builtin.copy:
+        src: /server-health-monitoring/health_check_scripts/ipmi_check.sh
+        dest: /ipsec/power_check/
+        owner: odennav
+        group: odennav
+        mode: '0755'
+      tags:
+        - copy_power_script
+
+    - name: Cronjob for power status check
+      ansible.builtin.cron:
+        name: "power status monitoring"
+        minute: "1"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        job: "/bin/bash /ipsec/power_check/ipmi_check.sh > /dev/null 2>&1"
+      tags:
+        - setup_cron_power_check
+
+
+    - name: Restart service cron on centos, daemon-reload to pick up config changes
+      ansible.builtin.systemd_service:
+        state: restarted
+        daemon_reload: true
+        name: crond
+
+
