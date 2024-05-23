@@ -738,7 +738,7 @@ A continuous delivery (CD) pipeline is an automated expression of our process fo
 
 Every change committed in source control goes through a repeated and reliable process on its way to being released.
 
-In Declarative Pipeline syntax, the pipeline block below defines all the work done throughout our entire Pipeline.
+The pipeline block below defines all the work done throughout our entire Pipeline.
 
 ```text
 
