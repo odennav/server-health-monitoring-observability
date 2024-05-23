@@ -8,5 +8,5 @@ while true; do
     dd if=/tmp/bigfile of=/dev/null bs=1M count=10000
     
     # 1 second wait before repeating the processs
-    sleep 1
+    sleep 30
 done
