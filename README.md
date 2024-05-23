@@ -115,7 +115,7 @@ sudo ls -la /root
 To change the `PermitRootLogin` setting, modify the SSH server configuration file `/etc/ssh/sshd_config` as shown below:
 
 ```text
-PermitRootLogin no:
+PermitRootLogin no
 ```
 
 Please note you'll have to repeat this user setup for each server provisioned.
