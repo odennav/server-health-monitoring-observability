@@ -4,7 +4,7 @@
 SERVER_HOSTNAME=$(hostname)
 
 # Slack webhook url
-SLACK_WEBHOOK_URL='https://hooks.slack.com/services/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'
+SLACK_WEBHOOK_URL=''
 
 THRESHOLD_WARNING=70
 THRESHOLD_ALERT=80
