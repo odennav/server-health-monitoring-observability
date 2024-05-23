@@ -18,12 +18,12 @@ cpuUsageCheck() {
     SYS_TIME=$(top -b -n 1 | awk -F'[:, ]+' '/%Cpu\(s\)/  {print $4}' )
     
     if [ ! -z "$SYS_TIME" ]; then
-        if (( $(echo "$SYS_TIME =< $THRESHOLD_WARNING" | bc) )); then
-            MESSAGE_NORMAL=":white_check_mark: NOTICE - CPU usage on $SERVER_HOSTNAME is in good condition."
-            # Sending the alert message to Slack
-            curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
+#       if (( $(echo "$SYS_TIME =< $THRESHOLD_WARNING" | bc) )); then
+#           MESSAGE_NORMAL=":white_check_mark: NOTICE - CPU usage on $SERVER_HOSTNAME is in good condition."
+#           # Sending the alert message to Slack
+#           curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
 
-        elif (( $(echo "$SYS_TIME > $THRESHOLD_WARNING" | bc) )); then
+        if (( $(echo "$SYS_TIME > $THRESHOLD_WARNING" | bc) )); then
             MESSAGE_WARNING=":warning: NOTICE - CPU usage on $SERVER_HOSTNAME is at $SYS_TIME%."
             # Sending the alert message to Slack
             curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_WARNING'}" "$SLACK_WEBHOOK_URL"
@@ -44,6 +44,7 @@ cpuUsageCheck() {
             # Sending the alert message to Slack
             curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_CRITICAL'}" "$SLACK_WEBHOOK_URL"
 
+        fi
     else
         echo "CPU system time not received"
 
@@ -62,12 +63,12 @@ loadAvgCheck() {
     LOAD_AVG_15=$(uptime | awk -F'[:, ]+' '{print $11}')
 
     if [ (! -z "$CPU_CORES") &&  (! -z "$LOAD_AVG_1") && (! -z "$LOAD_AVG_5") && (! -z "$LOAD_AVG_15") ]; then
-        if (( $(echo "$LOAD_AVG_1 < $CPU_CORES" | bc) && $(echo "$LOAD_AVG_5 < $CPU_CORES" | bc) && $(echo "$LOAD_AVG_15 < $CPU_CORES" | bc) )); then
-        MESSAGE_NORMAL=":heavy_check_mark: NOTICE - Load average on $SERVER_HOSTNAME is $LOAD_AVG_1, $LOAD_AVG_5, $LOAD_AVG_15. System workload is fine."
-            # Sending the alert message to Slack
-            curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
+#       if (( $(echo "$LOAD_AVG_1 < $CPU_CORES" | bc) && $(echo "$LOAD_AVG_5 < $CPU_CORES" | bc) && $(echo "$LOAD_AVG_15 < $CPU_CORES" | bc) )); then
+#       MESSAGE_NORMAL=":heavy_check_mark: NOTICE - Load average on $SERVER_HOSTNAME is $LOAD_AVG_1, $LOAD_AVG_5, $LOAD_AVG_15. System workload is fine."
+#           # Sending the alert message to Slack
+#           curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
 
-        elif (( $(echo "$LOAD_AVG_1 > $CPU_CORES" | bc) && $(echo "$LOAD_AVG_5 > $CPU_CORES" | bc) && $(echo "$LOAD_AVG_15 > $CPU_CORES" | bc) )); then
+        if (( $(echo "$LOAD_AVG_1 > $CPU_CORES" | bc) && $(echo "$LOAD_AVG_5 > $CPU_CORES" | bc) && $(echo "$LOAD_AVG_15 > $CPU_CORES" | bc) )); then
         MESSAGE_ALERT=":exclamation: NOTICE - Load average on $SERVER_HOSTNAME is $LOAD_AVG_1, $LOAD_AVG_5, $LOAD_AVG_15. System is under heavy load."
             # Sending the alert message to Slack
             curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_ALERT'}" "$SLACK_WEBHOOK_URL"

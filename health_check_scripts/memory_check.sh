@@ -29,15 +29,15 @@ physicalMemoryCheck() {
 
     if [ -n "$FREE_MEM_PERCENTAGE" ]; then
 
-        if (( $(echo "$FREE_MEM_PERCENTAGE > $THRESHOLD_WARNING" | bc) )); then
-            MESSAGE_NORMAL=":heavy_check_mark: NOTICE - Free memory on $SERVER_HOSTNAME is at $FREE_MEM_PERCENTAGE%, this is within acceptable range."
+#       if (( $(echo "$FREE_MEM_PERCENTAGE > $THRESHOLD_WARNING" | bc) )); then
+#           MESSAGE_NORMAL=":heavy_check_mark: NOTICE - Free memory on $SERVER_HOSTNAME is at $FREE_MEM_PERCENTAGE%, this is within acceptable range."
 
-            # Sending the alert message to Slack
-            curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
+#           # Sending the alert message to Slack
+#           curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
 
 
 
-        elif (( $(echo "$FREE_MEM_PERCENTAGE <= $THRESHOLD_WARNING" | bc) )); then
+        if (( $(echo "$FREE_MEM_PERCENTAGE <= $THRESHOLD_WARNING" | bc) )); then
             MESSAGE_WARNING=":warning: WARNING - Free memory on $SERVER_HOSTNAME is at $FREE_MEM_PERCENTAGE%, this is close to defined threshold."
 
             # Sending the alert message to Slack
@@ -90,11 +90,11 @@ swapMemoryCheck() {
 
     if [ -n "$FREE_SWAP_MEM_PERCENTAGE" ]; then
 
-        if (( $(echo "$FREE_SWAP_MEM_PERCENTAGE > $THRESHOLD_WARNING" | bc) )); then
-            MESSAGE_NORMAL=":heavy_check_mark: NOTICE - Free memory on $SERVER_HOSTNAME is at $FREE_SWAP_MEM_PERCENTAGE%, this is within acceptable range."
+#       if (( $(echo "$FREE_SWAP_MEM_PERCENTAGE > $THRESHOLD_WARNING" | bc) )); then
+#           MESSAGE_NORMAL=":heavy_check_mark: NOTICE - Free memory on $SERVER_HOSTNAME is at $FREE_SWAP_MEM_PERCENTAGE%, this is within acceptable range."
 
-            # Sending the alert message to Slack
-            curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
+#           # Sending the alert message to Slack
+#           curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
 
 
 

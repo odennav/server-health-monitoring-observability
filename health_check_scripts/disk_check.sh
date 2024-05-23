@@ -20,11 +20,11 @@ diskCheckRoot() {
 
     if [ -n "$DISK_USAGE" ]; then
     
-        if [ "$DISK_USAGE" -le "$THRESHOLD_WARNING" ]; then
-            MESSAGE_NORMAL=":heavy_check_mark: NOTICE - Disk usage of root partition on $SERVER_HOSTNAME is at $DISK_USAGE%, this is within acceptable range."
+#       if [ "$DISK_USAGE" -le "$THRESHOLD_WARNING" ]; then
+#           MESSAGE_NORMAL=":heavy_check_mark: NOTICE - Disk usage of root partition on $SERVER_HOSTNAME is at $DISK_USAGE%, this is within acceptable range."
 
-            # Sending the alert message to Slack
-            curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
+#           # Sending the alert message to Slack
+#           curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
 
 
 
@@ -73,11 +73,11 @@ diskCheckLogs() {
 
     if [ -n "$DISK_USAGE_LOGS" ]; then
     
-        if [ "$DISK_USAGE_LOGS" -le "$THRESHOLD_WARNING" ]; then
-            MESSAGE_NORMAL=":heavy_check_mark: NOTICE - Disk usage of partition mounted on /var in $SERVER_HOSTNAME is at $DISK_USAGE_LOGS%, this is within acceptable range."
+#       if [ "$DISK_USAGE_LOGS" -le "$THRESHOLD_WARNING" ]; then
+#           MESSAGE_NORMAL=":heavy_check_mark: NOTICE - Disk usage of partition mounted on /var in $SERVER_HOSTNAME is at $DISK_USAGE_LOGS%, this is within acceptable range."
 
-            # Sending the alert message to Slack
-            curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
+#           # Sending the alert message to Slack
+#           curl -X POST -H 'Content-type: application/json' --data "{'text':'$MESSAGE_NORMAL'}" "$SLACK_WEBHOOK_URL"
 
 
 
