@@ -31,6 +31,7 @@ We'll implement workflow below:
 - Gogs Installation and Configuration
 - Trivy Installation and Integration
 - Ansible Setup and Deployment
+- Install Plugins
 - Pipeline Setup with Jenkinsfile
 
 -----
@@ -310,7 +311,7 @@ Kind -------------------------> Secret text
 
 Scope ------------------------> Global
 
-Secret -----------------------> <sonar-token>
+Secret -----------------------> `sonar-token`
 
 Description ------------------> sonar
 
@@ -658,7 +659,7 @@ ansible-palybook --inventory inventory  deploy_bundle/deploy_bundle.yml -e @/ser
 -----
 
 
-## Install Plugins
+## Install Plugins 
 
 Plugins are required to integrate tools to Jenkins and execute in our pipeline script.
 
@@ -685,7 +686,7 @@ Our next task is to search and install the following plugins below:
 Select `Install without restart` at bottom left
 
 
-### Configure Other Global Tools
+**Configure Other Global Tools**
 
 Go to `Global Tool Configuration` under `Manage Jenkins` section of Jenkins dasboard
 
