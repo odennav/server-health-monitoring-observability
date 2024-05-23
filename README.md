@@ -824,11 +824,12 @@ To view scan reports from Trivy:
 
 ## Jenkins Slave Setup(Optional)
 
-We'll use this node `cs2` to run Sonarqube with Docker and implement test pipeline.
+We'll use node named `jenkins-agent` in Vagrantfile to run as slave node to Jenkins.
 
-Login to `cs2` node with 192.168.10.6 assigned as its IPv4 address in Vagrantfile.
+Login to `js` node with 192.168.10.9 assigned as its IPv4 address in Vagrantfile.
 ```bash
-vagrant ssh cs2
+vagrant up js
+vagrant ssh js
 ```
 
 Switch to root user
