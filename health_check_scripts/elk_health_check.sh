@@ -6,7 +6,7 @@
 SERVER_HOSTNAME=$(hostname)
 
 # Slack webhook url
-SLACK_WEBHOOK_URL=''
+SLACK_WEBHOOK_URL='webhook_url'
 
 # Elasticsearch health check endpoint
 ELK_ENDPOINT=localhost:9200/_cluster/health?delta

@@ -6,7 +6,7 @@
 SERVER_HOSTNAME=$(hostname)
 
 # Slack webhook url
-SLACK_WEBHOOK_URL=''
+SLACK_WEBHOOK_URL='webhook_url'
 
 # The directory to search for old files
 TARGET_DIR="/var/lib/elasticsearch/sfw-name/nodes/0/indices"

@@ -3,7 +3,7 @@
 # This script checks disk usage of partitions mounted on / and /var directories
 
 # slack webhook url
-SLACK_WEBHOOK_URL=''
+SLACK_WEBHOOK_URL='webhook_url'
 
 # Server hostname
 SERVER_HOSTNAME=$(hostname)

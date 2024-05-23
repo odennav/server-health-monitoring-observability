@@ -3,7 +3,7 @@
 # This script checks the percentage of free memory in server
 
 # Slack webhook url
-SLACK_WEBHOOK_URL=''
+SLACK_WEBHOOK_URL='webhook_url'
 
 # Server hostname
 SERVER_HOSTNAME=$(hostname)
