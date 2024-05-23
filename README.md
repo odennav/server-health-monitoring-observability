@@ -753,7 +753,6 @@ pipeline {
         ANSIBLE_VAULT_PATH="\"@/server-health-monitoring/ansible-vault/values.yml\""
 }
 
-
     stages {
         stage('Git Checkout') {
             steps {
@@ -771,6 +770,8 @@ pipeline {
         }
         stage('Trivy Vulnerability Scan') {
             steps {
+                withCredentials([string(credentialsId: 'slack_webhook_url', variable: 'URL')])
+                sh "sed -i 's|webhook_url|${URL}|g' $TRIVY_SCRIPT_PATH/trivy_repo_scan.sh
                 sh "sudo bash $TRIVY_SCRIPT_PATH/trivy_repo_scan.sh"    
             }
         }
@@ -782,8 +783,7 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: "trivy_report_*.html", fingerprint: true
-                
+            archiveArtifacts artifacts: "trivy_report_*.html", fingerprint: true    
             publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
