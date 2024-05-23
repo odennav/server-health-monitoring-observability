@@ -1,6 +1,6 @@
 # Server Health Monitoring and Observability 
 
-The Objective of this project is to implement automated monitoring and observability of Cellusys machines running CentOS by retrieving information on system resource utilization (CPU, Memory, Disk, Power) and service status(Elasticsearch, NTP) with Bash and Python scripts.
+The Objective of this project is to implement automated monitoring and observability of Cellusys servers running Linux by retrieving information on system resource utilization (CPU, Memory, Disk, Power) and service status(Elasticsearch, NTP) with Bash and Python scripts.
 
 The Linux servers are classified as:
 
