@@ -644,17 +644,13 @@ ansible all -m ping
 
 **Run ansible playbook**
 
-This playbook will implement the following tasks in remote servers:
+Playbook `deploy_bundle/deploy_bundle.yml` will implement the following tasks in remote servers:
 
 - Create directories for each monitoring role
 - Copy shell scripts to remote hosts for monitoring
 - Setup cron jobs to execute scripts in remote hosts
 - Restart cron service
 
-```bash
-cd /server-health-monitoring/ansible
-ansible-palybook --inventory inventory  deploy_bundle/deploy_bundle.yml -e @/server-health-monitoring/ansible-vault/values.yml  
-```
 
 -----
 
