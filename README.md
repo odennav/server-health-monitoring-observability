@@ -748,6 +748,7 @@ pipeline {
     }
     environment{
         SCANNER_HOME= tool 'sonar-scanner'
+        HEALTH_CHECK_SCRIPTS_PATH="/opt/gogs/server-health-monitoring/health_check_scripts"
         TRIVY_SCRIPT_PATH="/opt/gogs/server-health-monitoring/trivy"
         ANSIBLE_DEPLOY_SCRIPT_PATH="/opt/gogs/server-health-monitoring/deploy_bundle/deploy_bundle.yml"    
         ANSIBLE_VAULT_PATH="\"@/server-health-monitoring/ansible-vault/values.yml\""
@@ -771,7 +772,7 @@ pipeline {
         stage('Trivy Vulnerability Scan') {
             steps {
                 withCredentials([string(credentialsId: 'slack_webhook_url', variable: 'URL')])
-                sh "sed -i 's|webhook_url|${URL}|g' $TRIVY_SCRIPT_PATH/trivy_repo_scan.sh
+                sh "sed -i 's|webhook_url|${URL}|g' $HEALTH_CHECK_SCRIPTS_PATH/*.sh
                 sh "sudo bash $TRIVY_SCRIPT_PATH/trivy_repo_scan.sh"    
             }
         }
