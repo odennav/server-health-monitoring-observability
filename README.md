@@ -472,7 +472,7 @@ Select `Create` to save credential.
 
 Trivy is an open source security scanner used to find vulnerabilities and Iac misconfigurations.
 
-It's used to scan the following:
+It can be used to scan the following:
 
 - Container images
 
@@ -480,7 +480,7 @@ It's used to scan the following:
 
 - Virtual machine image
 
-- Git repository remote
+- Git repository
 
 - Kubernetes cluster
 
