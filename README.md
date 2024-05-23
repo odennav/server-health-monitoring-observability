@@ -1,6 +1,6 @@
 # Server Health Monitoring and Observability 
 
-The Objective of this project is to implement automated monitoring and observability of Cellusys servers running Linux by retrieving information on system resource utilization (CPU, Memory, Disk, Power) and service status(Elasticsearch, NTP) with Bash and Python scripts.
+The Objective of this project is to simulate automated monitoring and observability of Cellusys servers running Linux by retrieving information on system resource utilization (CPU, Memory, Disk, Power) and service status(Elasticsearch, NTP) with Bash and Python scripts.
 
 The Linux servers are classified as:
 
@@ -9,9 +9,11 @@ The Linux servers are classified as:
 
 Ansible is used to setup deployment of system-resource monitoring scripts in all central servers and message processors.
 
+Secure continuous integration and continuous delivery pipeline configured in Jenkins.
+
 System resource-usage and service status messages are sent to a Slack channel for real-time observability of resources and services.
 
-Secure continuous integration and continuous delivery pipeline configured in Jenkins.
+
 
 # Getting Started
 
