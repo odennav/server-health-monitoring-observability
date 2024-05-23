@@ -27,8 +27,8 @@
     - name: Cronjob for power status check
       ansible.builtin.cron:
         name: "power status monitoring"
-        minute: "1"
-        hour: "*"
+        minute: "0"
+        hour: "0,6,12,18"
         day: "*"
         month: "*"
         weekday: "*"

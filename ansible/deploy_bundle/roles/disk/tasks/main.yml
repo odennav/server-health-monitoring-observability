@@ -37,8 +37,8 @@
     - name: Cronjob for disk usage
       ansible.builtin.cron:
         name: "disk usage monitoring"
-        minute: "1"
-        hour: "*"
+        minute: "0"
+        hour: "0,6,12,18"
         day: "*"
         month: "*"
         weekday: "*"
@@ -49,8 +49,8 @@
     - name: Cronjob for checking old files
       ansible.builtin.cron:
         name: "old files monitoring"
-        minute: "1"
-        hour: "*"
+        minute: "0"
+        hour: "6"
         day: "*"
         month: "*"
         weekday: "*"
