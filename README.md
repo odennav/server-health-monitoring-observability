@@ -904,7 +904,7 @@ Select `Create` to save credential.
 
 **Add Jenkins Slave Node**
 
-Net, we add `cs2` to agent pool.
+Next, we add `js` to agent pool.
 
 Go back to `Manage Jenkins` and select 'Manage Nodes and Clouds`
 
@@ -924,7 +924,7 @@ Labels -----------------------> slave
 
 Launch method ----------------> Launch agent via SSH
 
-Host -------------------------> 192.168.10.6
+Host -------------------------> 192.168.10.9
 
 Credentials ------------------> root (private-key)
 
