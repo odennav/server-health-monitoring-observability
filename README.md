@@ -2,14 +2,14 @@
 
 This project is intended to simulate automated monitoring and observability of Cellusys machines(linux servers) running CentOS by retrieving information on system utilization (CPU, Memory, Disk) with Bash and Python.
 
-Linux servers are classified as:
+The Linux servers are classified as:
 
 - Central servers
 - Message processors
 
 Ansible is used to setup deployment of resurce monitoring scripts in all central servers and message processors.
 
-Payload messages are sent to Slack channel to view current usage of system resources.
+System resource usage messages are sent to a Slack channel for real-time observability of resources.
 
 
 # Getting Started
