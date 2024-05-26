@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
     end
 
 
-    config.vm.define "mp4" do |mp3|
+    config.vm.define "mp4" do |mp4|
       mp4.vm.box = "boxomatic/centos-stream-9"
       mp4.vm.hostname = "message-processor-4"
       mp4.vm.network "private_network", ip: "192.168.20.5"
@@ -89,7 +89,7 @@ Vagrant.configure("2") do |config|
     end    
 
 
-    config.vm.define "mp5" do |mp3|
+    config.vm.define "mp5" do |mp5|
       mp5.vm.box = "boxomatic/centos-stream-9"
       mp5.vm.hostname = "message-processor-5"
       mp5.vm.network "private_network", ip: "192.168.20.7"
@@ -103,7 +103,7 @@ Vagrant.configure("2") do |config|
 
     end
 
-    config.vm.define "js" do |mp3|
+    config.vm.define "js" do |js|
       js.vm.box = "boxomatic/centos-stream-9"
       js.vm.hostname = "jenkins-slave-1"
       js.vm.network "private_network", ip: "192.168.10.9"
