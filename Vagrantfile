@@ -106,7 +106,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "js" do |js|
       js.vm.box = "boxomatic/centos-stream-9"
       js.vm.hostname = "jenkins-slave-1"
-      js.vm.network "private_network", ip: "192.168.10.9"
+      js.vm.network "private_network", ip: "192.168.10.8"
       js.vm.synced_folder ".", "/vagrant"
       js.vm.provider "virtualbox" do |vb|
         vb.name = "jenkins-agent"
