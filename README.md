@@ -1,6 +1,6 @@
 # Server Health Monitoring and Observability 
 
-The Objective of this project is to simulate automated monitoring and observability of Cellusys servers by retrieving information on system resource utilization(cpu, memory, disk, power) and status of services such as elasticsearch and ntp.
+The Objective of this project is to simulate automated monitoring and observability of Cellusys servers by retrieving information on system resource utilization(cpu, memory, disk, power) and status of services such as elk and ntp.
 
 The Linux servers are classified as:
 
