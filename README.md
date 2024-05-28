@@ -838,7 +838,7 @@ When all scans are passed, the Ansible Deployment stage will proceed to setup cr
 
 Select pipeline created above and trigger a build of pipeline job.
 
-- Click on “Build Now” 
+- Click on `Build Now`
 
 - Jenkins will fetch the Jenkinsfile from gogs repository and run jobs as defined.
 
