@@ -733,9 +733,39 @@ Note, we'll need to also configure global tools for Trivy and Ansible.
 
 Jenkins Pipeline is a suite of plugins which supports implementing and integrating continuous delivery pipelines into Jenkins.
 
-A continuous delivery (CD) pipeline is an automated expression of our process for getting the monitoring scripts from Gogs right through to our remote hosts.
+This continuous delivery (CD) pipeline is an automated expression of our process for getting the monitoring scripts from Gogs right through to our remote hosts.
 
-Every change committed in source control goes through a repeated and reliable process on its way to being released.
+
+
+**Setup Pipeline**
+
+Implement procedure below:
+
+
+- Go to Jenkins main dashboard and click on `New Item`
+
+- Name pipeline, select `Pipeline` as type of project and click `OK`
+
+- Click on the created job and scroll down to the “Pipeline” section in the configuration screen.
+
+- Choose “Pipeline script from SCM” and select type of SCM.
+
+- Enter the URL of the gogs repository containing your Jenkinsfile.
+
+- Add credentials of gogs repository.
+
+- Choose the branch to build from, typically `/main` or `/master`
+
+- Specify the path of Jenkinsfile in SCM as `/server-health-monitoring/Jenkinsfile`
+
+- Click on `Save` to save this configuration.
+
+- Restart Jenkins to apply configuration changes or updates effectively.
+
+- Navigate to the Jenkins “dashboard” and click on `Manage Jenkins` in the sidebar.
+
+- Select `Reload Configuration from Disk` or `Restart Safely`.
+
 
 The pipeline block below defines all the work done throughout our entire Pipeline.
 
@@ -801,7 +831,24 @@ pipeline {
 }
 ```
 
-When all SAST scans are passed, the Ansible Deployment stage will proceed to setup cron jobs for health monitoring scripts in remote hosts.
+When all scans are passed, the Ansible Deployment stage will proceed to setup cron jobs for health monitoring scripts in remote hosts.
+
+
+**Build Pipeline**
+
+Select pipeline created above and trigger a build of pipeline job.
+
+- Click on “Build Now” 
+
+- Jenkins will fetch the Jenkinsfile from gogs repository and run jobs as defined.
+
+- View the progress of thr pipeline job on the Jenkins dashboard.
+
+- Click on the job to view detailed logs and status updates as each stage of the pipeline is executed.
+
+
+Check the console output and logs for more information on any failures.
+
 
 
 **SAST Reports**
