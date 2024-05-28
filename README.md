@@ -842,12 +842,12 @@ Select pipeline created above and trigger a build of pipeline job.
 
 - Jenkins will fetch the Jenkinsfile from gogs repository and run jobs as defined.
 
-- View the progress of thr pipeline job on the Jenkins dashboard.
+- View the progress of the pipeline job on the Jenkins dashboard.
 
 - Click on the job to view detailed logs and status updates as each stage of the pipeline is executed.
 
 
-Check the console output and logs for more information on any failures.
+Check the console output and logs for more info on any failures.
 
 
 
