@@ -989,4 +989,10 @@ Select `Save`
 
 -----
 
+### Next Steps
+
+Setup [Icinga](https://github.com/odennav/icinga-monitoring-alerting-system/) stack for monitoring and alerting.
+
+-----
+
 Enjoy!
