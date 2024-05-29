@@ -12,9 +12,9 @@ Ansible is used to setup deployment of system-resource monitoring scripts in all
 Secure continuous integration and continuous delivery pipeline configured in Jenkins.
 System resource-usage and service status messages are sent to a Slack channel for real-time observability of resources and services.
 
+![](https://github.com/odennav/server-health-monitoring-observability/blob/main/artifacts/server_health_pipeline.png)
 
-![](https://github.com/odennav/server-health-monitoring-observability/blob/main/artifacts/server_health_pipeline_ci_cd.png)
-
+-----
 
 # Getting Started
 
