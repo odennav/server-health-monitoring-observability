@@ -222,7 +222,7 @@ sudo systemctl status jenkins
 
 Next we use the post-installation setup wizard to unlock jenkins, customize plugins and create first admin user required to continue accessing jenkins.
 
-1. Browse to 192.168.10.6:8080 to see the**Unlock Jenkins** page.
+1. Browse to 192.168.10.6:8080 to see the **Unlock Jenkins** page.
 
 2. Obtain the automatically-generated alphanumeric password
     
