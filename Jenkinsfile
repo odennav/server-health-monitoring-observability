@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Ansible Deployment') {
             steps {
-                sh "ansible-playbook --inventory hosts.inventory  $ANSIBLE_DEPLOY_SCRIPT_PATH -e $ANSIBLE_VAULT_PATH"     
+                sh "ansible-playbook --inventory inventory  $ANSIBLE_DEPLOY_SCRIPT_PATH -e $ANSIBLE_VAULT_PATH"     
             }
         }
     }
