@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                //
+                git branch: 'master', credentialsId: 'odennav-gogs', url: 'https://192.168.10.1:3880/odennav/server-health-monitoring-observability.git'
             }
         }
         stage('Slack Webhook Integration') {
