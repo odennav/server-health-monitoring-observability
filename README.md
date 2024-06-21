@@ -182,7 +182,7 @@ Slack is the communication platform on our local machine we'll use to receive re
 
 - Select the channel your slack app will post to and a  Webhook URL will be generated as shown.
 
-This URL is used in our monitoring script for HTTP POST requests.
+This URL is used in our monitoring script for `HTTP POST` requests.
 
 -----
 
@@ -332,7 +332,7 @@ Click `Add SonarQube` and assign the following:
 
 Name ---------------------------------> sonar-server
 
-Server URL ---------------------------> 192.168.10.1:9000/
+Server URL ---------------------------> `192.168.10.1:9000/`
 
 Server authentication token ----------> sonar
 
@@ -867,7 +867,7 @@ To view scan reports from Trivy:
 
 - Select pipeline job created
 
-- Scroll down and click on 'Trivy Scan' tab on the left bar
+- Scroll down and click on `Trivy Scan` tab on the left bar
 
 - View vulnerabilities found with different severity levels.
 
@@ -878,7 +878,7 @@ To view scan reports from Trivy:
 
 We'll use node named `jenkins-agent` in Vagrantfile to run as slave node to Jenkins.
 
-Login to `js` node with 192.168.10.9 assigned as its IPv4 address in Vagrantfile.
+Login to `js` node with `192.168.10.9` assigned as its IPv4 address in Vagrantfile.
 ```bash
 vagrant up js
 vagrant ssh js
@@ -976,7 +976,7 @@ Labels -----------------------> slave
 
 Launch method ----------------> Launch agent via SSH
 
-Host -------------------------> 192.168.10.9
+Host -------------------------> `192.168.10.9`
 
 Credentials ------------------> root (private-key)
 
